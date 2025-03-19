@@ -1,4 +1,4 @@
-package kr.ac.kopo.lsw.bookmarket;
+package kr.ac.Kopo.lsw.bookmarket;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

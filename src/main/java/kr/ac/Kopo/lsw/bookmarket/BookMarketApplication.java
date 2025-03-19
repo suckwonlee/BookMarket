@@ -1,4 +1,4 @@
-package kr.ac.kopo.lsw.bookmarket;
+package kr.ac.Kopo.lsw.bookmarket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
