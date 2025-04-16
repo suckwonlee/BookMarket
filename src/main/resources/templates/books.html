@@ -9,28 +9,29 @@
 <main>
     <div class="container py-4">
         <header class="pb-3 mb-4 border-bottom">
-            <a href="/BookMarket/home" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-                <svg fill="#000000" width="32px" height="32px" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                    <path d="..." />
-                </svg>
-                <span class="fs-4">&nbsp; BookMarKet</span>
-            </a>
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <a href="/BookMarket/home" class="d-flex align-items-center text-body-emphasis text-decoration-none mb-3 mb-lg-0">
+                    <svg fill="#000000" width="32px" height="32px" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                        <path d="..." />
+                    </svg>
+                    <span class="fs-4 ms-2">BookMarKet</span>
+                </a>
+                <nav class="nav">
+                    <a href="/BookMarket/books/IT전문서" class="nav-link px-2">IT전문서</a>
+                    <a href="/BookMarket/books/IT교재" class="nav-link px-2">IT교재</a>
+                </nav>
+            </div>
         </header>
 
-        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-            <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">도서 목록</h1>
-                <p class="col-md-8 fs-4">BookMarket</p>
-            </div>
-        </div>
 
         <div class="row align-items-md-stretch text-center">
             <div class="col-md-4" th:each="book : ${bookList}">
                 <h3 th:text="${book.name}"></h3>
-                <p th:text="${book.author}"></p>
-                <p th:text="${book.publisher + ' | ' + book.releaseDate}"></p>
-                <p th:text="${book.description}" align="left"></p>
-                <p th:text="${book.unitPrice + '원'}"></p>
+                <p  th:text="${book.author}"></p>
+                <p  th:text="${book.publisher + ' | ' + book.releaseDate}"></p>
+                <p  th:text="${book.description}" align="left"></p>
+                <p  th:text="${book.unitPrice + '원'}"></p>
+                <p><a th:href="'/BookMarket/books/book?id='+${book.getBookId()}" class="btn btn-secondary" role="button">상세정보 &raquo;</a></p>
             </div>
         </div>
 
