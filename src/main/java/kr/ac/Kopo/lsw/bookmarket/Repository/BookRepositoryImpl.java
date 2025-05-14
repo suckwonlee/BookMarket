@@ -19,7 +19,7 @@ public class BookRepositoryImpl implements BookRepository {
         book1.setDescription("스프링 부트는 스프링을 기반으로 쉽고 빠르게 웹 애플리케이션을 개발할 수 있는 도구이다. 이 책에서는 스프링 부트의 기본 개념을 쉽게 이해하고 다양한 실습 예제로 빠르게 익힐 수 있다. 그리고 단계별 실습을 따라 하다 보면 도서 쇼핑몰 구축 프로젝트를 완성할 수 있다. 개념-실습-프로젝트의 3단계 학습으로 스프링 부트를 제대로 익힌다면 개발 시간을 단축하고 생산성을 높일 수 있는 개발자로 성장할 수 있다.\n");
         book1.setPublisher("길벗캠퍼스");
         book1.setCategory("IT교재");
-        book1.setUnitsInStock(1000);
+        book1.setUnitInStock(1000);
         book1.setReleaseDate("2024/12/31");
         book1.setCondition("신규도서");
         book1.setFilename("isbn0001.jpg");
@@ -32,7 +32,7 @@ public class BookRepositoryImpl implements BookRepository {
         book2.setDescription("이 책은 안드로이드 프로그래밍을 배우는 독자를 위한 교재로, Java 기초부터 안드로이드 앱 개발까지 학습할 수 있도록 구성되었습니다. 최신 버전인 JDK 17, Android 14.0(U), Android Studio Hedgehog을 기반으로 실습하며, ‘경기도 맛집 찾기 앱 만들기’ 프로젝트가 추가되었습니다. 오류와 실수에 대한 친절한 안내로 시행착오 없이 안드로이드 프로그래밍을 익힐 수 있습니다.");
         book2.setPublisher("한빛아카데미");
         book2.setCategory("IT교재");
-        book2.setUnitsInStock(800);
+        book2.setUnitInStock(800);
         book2.setReleaseDate("2024/01/19");
         book2.setCondition("신규도서");
         book2.setFilename("isbn0002.jpg");
@@ -45,7 +45,7 @@ public class BookRepositoryImpl implements BookRepository {
         book3.setDescription("이 책은 수식과 이론으로 중무장한 머신러닝, 딥러닝 책에 지친 ‘독학하는 입문자’가 ‘꼭 필요한 내용을 제대로’ 학습할 수 있도록 구성했다. 구글 머신러닝 전문가(Google ML expert)로 활동하고 있는 저자는 여러 차례의 입문자들과 함께한 머신러닝&딥러닝 스터디와 번역·집필 경험을 통해 ‘무엇을’ ‘어떻게’ 학습해야 할지 모르는 입문자의 막연함을 이해하고, 과외 선생님이 알려주듯 친절하게 핵심적인 내용을 콕콕 집어준다.");
         book3.setPublisher("길벗캠퍼스");
         book3.setCategory("IT전문서");
-        book3.setUnitsInStock(900);
+        book3.setUnitInStock(900);
         book3.setReleaseDate("2020/12/21");
         book3.setCondition("신규도서");
         book3.setFilename("isbn0003.jpg");

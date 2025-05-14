@@ -11,7 +11,8 @@ public class ResourceConfig implements WebMvcConfigurer {
     String fileDir;
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/BookMarket/images/**")
+        System.out.println(fileDir);
+        registry.addResourceHandler("/images/**")
                 .addResourceLocations("file:///"+fileDir)
                 .setCachePeriod(60*60*24*365);
 
