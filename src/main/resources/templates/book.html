@@ -31,9 +31,9 @@
 
         <div class="row align-items-md-stretch">
             <div class="col-md-4">
-                <img th:src="'/BookMarket/images/'+${book.filename}" alt="image" style="width: 90%"/>
+                <img th:src="@{/images/{file}(file=${book.fileName})}" alt="image" style="width: 90%"/>
                 <div class="text-center">
-                    <a style="text-decoration: none" th:href="@{/books/download(file=${book.filename})}">이미지다운로드</a>
+                    <a style="text-decoration: none" th:href="@{/books/download(file=${book.fileName})}">이미지다운로드</a>
                 </div>
             </div>
             <div class="col-md-8">

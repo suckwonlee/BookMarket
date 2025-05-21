@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import kr.ac.Kopo.lsw.bookmarket.Domain.Book;
 import kr.ac.Kopo.lsw.bookmarket.Service.BookService;
+import kr.ac.Kopo.lsw.bookmarket.validator.BookValidator;
+import kr.ac.Kopo.lsw.bookmarket.validator.UnitsInStockValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,12 @@ public class BookController {
 
     @Value("${file.uploadDir}")
     String fileDir;
+
+//    @Autowired
+//    private UnitsInStockValidator unitsInStockValidator;
+
+    @Autowired
+    private BookValidator bookValidator;
 
     @GetMapping
     public String requestBookList(Model model) {
@@ -91,7 +99,7 @@ public class BookController {
         } catch (IOException e) {
             throw new RuntimeException("도서 이미지가 업로드 되지 않았습니다.");
         }}
-        book.setFilename(saveName);
+        book.setFileName(saveName);
         bookService.setNewBook(book);
         return "redirect:/books";
     }
@@ -115,6 +123,7 @@ public class BookController {
     }
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.setAllowedFields("bookId", "name", "unitPrice","author",  "Description", "publisher", "Category", "unitsInStock",  "releaseDate","condition","bookImage");
+        binder.setValidator(bookValidator);
+        binder.setAllowedFields("bookId", "name", "unitPrice","author",  "description", "publisher", "category", "unitsInStock",  "releaseDate","condition","bookImage");
     }
 }

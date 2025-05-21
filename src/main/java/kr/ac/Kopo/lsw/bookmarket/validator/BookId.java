@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BookId {
-    String message() default "";
+    String message() default "{BookId.book.bookId}";
     Class<?>[] groups() default {};
     Class<?>[] payload() default {};
 }
