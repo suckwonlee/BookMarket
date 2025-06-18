@@ -23,4 +23,24 @@ public class Cart {
         this();
         this.CartId=cartId;
     }
+    public void addCartItem(CartItem item) {
+        String bookId = item.getBook().getBookId();
+
+        if (cartItems.containsKey(bookId)) {
+            CartItem cartItem = cartItems.get(bookId);
+            cartItem.setQuantity(cartItem.getQuantity() + item.getQuantity());
+            cartItems.put(bookId, cartItem);
+        } else {
+            cartItems.put(bookId, item);
+        }
+
+        updateGrandTotal();
+    }
+    public void updateGrandTotal() {
+        grandTotal=new BigDecimal(0);
+        for (CartItem cartItem : cartItems.values()) {
+            grandTotal=grandTotal.add(cartItem.getTotalPrice());
+        }
+    }
+
 }
