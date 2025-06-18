@@ -27,7 +27,12 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void update(String cartId, Cart cart) {
+        CartRepository.update(cartId, cart);
+    }
 
+    @Override
+    public void delete(String cartId) {
+        CartRepository.delete(cartId);
     }
 
 
