@@ -27,43 +27,53 @@
                 <p class="col-md-8 fs-4">BookMarket</p>
             </div>
         </div>
-        <div class="row align-items-md=stretch">
-        <form th:object="${customer}" action="/BookMarket/order/orderCustomerInfo" method="post">
-            <legend>고객 세부 사항</legend>
-            <div class="col-sm-3">
-                <label class="col-sm-2 control-label">고객 ID</label>
-                <input type="text" name="customerId" class="form-control" th:field="*{customerId}"/>
-            </div>
-            <div class="col-sm-3">
-                <label class="col-sm-2 control-label">성명</label>
-                <input type="text" name="customerId" class="form-control" th:field="*{name}"/>
-            </div>
-            <div class="col-sm-3">
-                <label class="col-sm-2 control-label">전화번호</label>
-                <input type="text" name="customerId" class="form-control" th:field="*{phone}"/>
-            </div>
-            <div class="col-sm-3">
-                <label class="col-sm-2 control-label">국가명</label>
-                <input type="text" name="customerId" class="form-control" th:field="*{address.country}"/>
-            </div>
-            <div class="col-sm-3">
-                <label class="col-sm-2 control-label">우편번호</label>
-                <input type="text" name="customerId" class="form-control" th:field="*{address.zipcode}"/>
-            </div>
-            <div class="col-sm-3">
-                <label class="col-sm-2 control-label">기본 주소</label>
-                <input type="text" name="customerId" class="form-control" cols:50 rows="2" th:field="*{address.addressName}"/>
-            </div>
-            <div class="col-sm-3">
-                <label class="col-sm-2 control-label">상세 주소</label>
-                <input type="text" name="customerId" class="form-control" cols:50 th:field="*{address.detailName}"/>
-            </div>
-            <div class="col-sm-3">
-                <div class="col-sm-offset col-sm-10">
-                    <button type="submit" class="btn btn-primary" value="등록"/>
-                    <a herf="/BookMarket/order/orderCancelled" class="btn btn-secondary" role="button">취소</a>
-                </div>
+            <div class="row align-items-md-stretch">
+                <form th:object="${customer}" action="/BookMarket/order/orderCustomerInfo" method="post">
+                    <legend>고객 세부 사항</legend>
 
+                    <div class="col-sm-3">
+                        <label class="col-sm-2 control-label">고객 ID</label>
+                        <input type="text" name="customerId" class="form-control" th:field="*{customerId}"/>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="col-sm-2 control-label">성명</label>
+                        <input type="text" name="name" class="form-control" th:field="*{name}"/>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="col-sm-2 control-label">전화번호</label>
+                        <input type="text" name="phone" class="form-control" th:field="*{phone}"/>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="col-sm-2 control-label">국가명</label>
+                        <input type="text" name="country" class="form-control" th:field="*{address.country}"/>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="col-sm-2 control-label">우편번호</label>
+                        <!-- 여기 수정: zipcode -> zipCode -->
+                        <input type="text" name="zipCode" class="form-control" th:field="*{address.zipCode}"/>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="col-sm-2 control-label">기본 주소</label>
+                        <input type="text" name="addressName" class="form-control" th:field="*{address.addressName}"/>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label class="col-sm-2 control-label">상세 주소</label>
+                        <input type="text" name="detailName" class="form-control" th:field="*{address.detailName}"/>
+                    </div>
+
+                    <div class="col-sm-3 mt-3">
+                        <div class="col-sm-offset col-sm-10">
+                            <button type="submit" class="btn btn-primary">등록</button>
+                            <a href="/BookMarket/order/orderCancelled" class="btn btn-secondary" role="button">취소</a>
+                        </div>
+                    </div>
+                </form>
             </div>
 
         </form>

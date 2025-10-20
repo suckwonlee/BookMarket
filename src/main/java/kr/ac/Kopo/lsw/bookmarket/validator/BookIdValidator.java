@@ -2,8 +2,8 @@ package kr.ac.Kopo.lsw.bookmarket.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import kr.ac.Kopo.lsw.bookmarket.Domain.Book;
-import kr.ac.Kopo.lsw.bookmarket.Service.BookService;
+import kr.ac.Kopo.lsw.bookmarket.domain.Book;
+import kr.ac.Kopo.lsw.bookmarket.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class BookIdValidator implements ConstraintValidator<BookId, String> {

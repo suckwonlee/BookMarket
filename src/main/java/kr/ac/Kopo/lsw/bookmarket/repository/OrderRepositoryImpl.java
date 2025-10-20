@@ -1,7 +1,6 @@
-package kr.ac.Kopo.lsw.bookmarket.Repository;
+package kr.ac.Kopo.lsw.bookmarket.repository;
 
-import kr.ac.Kopo.lsw.bookmarket.Domain.Order;
-import org.aspectj.weaver.ast.Or;
+import kr.ac.Kopo.lsw.bookmarket.domain.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

@@ -1,6 +1,6 @@
 package kr.ac.Kopo.lsw.bookmarket.validator;
 
-import kr.ac.Kopo.lsw.bookmarket.Domain.Book;
+import kr.ac.Kopo.lsw.bookmarket.domain.Book;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

@@ -1,7 +1,7 @@
-package kr.ac.Kopo.lsw.bookmarket.Service;
+package kr.ac.Kopo.lsw.bookmarket.service;
 
-import kr.ac.Kopo.lsw.bookmarket.Domain.Book;
-import kr.ac.Kopo.lsw.bookmarket.Repository.BookRepository;
+import kr.ac.Kopo.lsw.bookmarket.domain.Book;
+import kr.ac.Kopo.lsw.bookmarket.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

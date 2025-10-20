@@ -1,6 +1,6 @@
-package kr.ac.Kopo.lsw.bookmarket.Repository;
+package kr.ac.Kopo.lsw.bookmarket.repository;
 
-import kr.ac.Kopo.lsw.bookmarket.Domain.Book;
+import kr.ac.Kopo.lsw.bookmarket.domain.Book;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

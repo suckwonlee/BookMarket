@@ -1,6 +1,6 @@
-package kr.ac.Kopo.lsw.bookmarket.Repository;
+package kr.ac.Kopo.lsw.bookmarket.repository;
 
-import kr.ac.Kopo.lsw.bookmarket.Domain.Book;
+import kr.ac.Kopo.lsw.bookmarket.domain.Book;
 import kr.ac.Kopo.lsw.bookmarket.exception.BookIdException;
 import org.springframework.stereotype.Repository;
 

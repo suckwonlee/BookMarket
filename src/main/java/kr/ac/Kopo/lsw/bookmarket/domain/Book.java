@@ -1,11 +1,8 @@
-package kr.ac.Kopo.lsw.bookmarket.Domain;
+package kr.ac.Kopo.lsw.bookmarket.domain;
 
 import jakarta.validation.constraints.*;
 import kr.ac.Kopo.lsw.bookmarket.validator.BookId;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;

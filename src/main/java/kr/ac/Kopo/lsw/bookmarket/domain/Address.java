@@ -1,4 +1,4 @@
-package kr.ac.Kopo.lsw.bookmarket.Domain;
+package kr.ac.Kopo.lsw.bookmarket.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

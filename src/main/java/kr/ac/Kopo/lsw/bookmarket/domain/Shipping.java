@@ -1,4 +1,4 @@
-package kr.ac.Kopo.lsw.bookmarket.Domain;
+package kr.ac.Kopo.lsw.bookmarket.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,7 +13,7 @@ public class Shipping {
     private String name;
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private String date;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
     private Address address;
 

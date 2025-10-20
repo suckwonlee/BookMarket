@@ -1,4 +1,4 @@
-package kr.ac.Kopo.lsw.bookmarket.Domain;
+package kr.ac.Kopo.lsw.bookmarket.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;

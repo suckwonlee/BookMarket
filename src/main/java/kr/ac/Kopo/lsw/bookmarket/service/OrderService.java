@@ -1,6 +1,6 @@
-package kr.ac.Kopo.lsw.bookmarket.Service;
+package kr.ac.Kopo.lsw.bookmarket.service;
 
-import kr.ac.Kopo.lsw.bookmarket.Domain.Order;
+import kr.ac.Kopo.lsw.bookmarket.domain.Order;
 
 
 public interface OrderService {

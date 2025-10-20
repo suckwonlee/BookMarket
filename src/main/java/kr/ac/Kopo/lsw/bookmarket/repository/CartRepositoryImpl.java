@@ -1,6 +1,6 @@
-package kr.ac.Kopo.lsw.bookmarket.Repository;
+package kr.ac.Kopo.lsw.bookmarket.repository;
 
-import kr.ac.Kopo.lsw.bookmarket.Domain.Cart;
+import kr.ac.Kopo.lsw.bookmarket.domain.Cart;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
