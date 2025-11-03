@@ -10,6 +10,4 @@ public class CartException extends RuntimeException {
     public String getCartId() {
         return cartId;
     }
-
-
 }

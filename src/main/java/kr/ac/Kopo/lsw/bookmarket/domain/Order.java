@@ -9,22 +9,23 @@ import java.util.Map;
 
 @Data
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
-    @Id@GeneratedValue
+    @Id
+    @GeneratedValue
     private Long orderId;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="shipping_id")
+    @JoinColumn(name = "shipping_id")
     private Shipping shipping;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="order_oder_id")
-    private Map<String,OrderItem> orderItems=new HashMap<String,OrderItem>();
+    @JoinColumn(name = "order_order_id")
+    private Map<String, OrderItem> orderItems = new HashMap<String, OrderItem>();
 
     private BigDecimal grandTotal;
 }
-

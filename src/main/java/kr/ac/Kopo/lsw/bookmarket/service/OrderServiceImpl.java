@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl  implements OrderService {
     @Autowired
     private BookRepository bookRepository;
 
@@ -16,17 +16,17 @@ public class OrderServiceImpl implements OrderService{
     private OrderRepository orderRepository;
 
     @Override
-    public void confirmOrder(String bookId, Long quanity) {
-            Book bookByid=bookRepository.getBookById(bookId);
-            if(bookByid.getUnitsInStock()<quanity){
-                throw new IllegalArgumentException("재고가 부족합니다. 구입 가능한 도서 수량: " + bookByid.getUnitsInStock());
-            }
-            bookByid.setUnitsInStock(bookByid.getUnitsInStock()+quanity);
+    public void confirmOrder(String bookId, long quantity) { //도서 재고 수 확인
+        Book bookById = bookRepository.getBookById(bookId);
+        if(bookById.getUnitsInStock() < quantity) {
+            throw new IllegalArgumentException("도서 수량이 부족합니다. 구입 가능한 도서 수량: " + bookById.getUnitsInStock());
         }
+        bookById.setUnitsInStock(bookById.getUnitsInStock() - quantity);
+    }
 
     @Override
-    public Long saveOrder(Order order){
-            Long orderId=orderRepository.saveOrder(order);
-            return orderId;
+    public Long saveOrder(Order order) {
+        Long orderId = orderRepository.saveOrder(order);
+        return orderId;
     }
 }

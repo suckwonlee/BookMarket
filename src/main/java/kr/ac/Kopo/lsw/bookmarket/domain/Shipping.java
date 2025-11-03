@@ -10,11 +10,10 @@ public class Shipping {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String name; //배송고객명
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-    private String date;
+    private String date; //배송일
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="address_id")
+    @JoinColumn(name = "address_id")
     private Address address;
-
 }
