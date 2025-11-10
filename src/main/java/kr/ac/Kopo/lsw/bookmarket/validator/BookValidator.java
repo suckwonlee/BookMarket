@@ -3,6 +3,7 @@ package kr.ac.Kopo.lsw.bookmarket.validator;
 import java.util.HashSet;
 import java.util.Set;
 
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -14,20 +15,15 @@ public class BookValidator implements Validator {
 	@Autowired
 	private jakarta.validation.Validator  beanValidator;	
 	
-	public Set<Validator> springValidators;	
+	@Setter
+    public Set<Validator> springValidators;
 
 	public BookValidator() { 
 	      springValidators = new HashSet<Validator>();		      
 	 }
-	
-	public void setSpringValidators(Set<Validator> springValidators) {
-		
-	      this.springValidators = springValidators;
-	   } 
-	
-	@Override
+
+    @Override
 	public boolean supports(Class<?> clazz) {
-		// TODO Auto-generated method stub
 		return Book.class.isAssignableFrom(clazz);
 	}
 
