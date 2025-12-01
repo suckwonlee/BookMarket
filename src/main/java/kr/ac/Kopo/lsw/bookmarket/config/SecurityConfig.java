@@ -31,7 +31,8 @@ public class SecurityConfig {
 		http
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-						.requestMatchers("/login", "/loginfailed", "/home", "/", "/db/**").permitAll() // 점검 후 /db/**는 닫으세요
+						.requestMatchers("/login", "/loginfailed", "/home", "/").permitAll()
+						.requestMatchers("/member/add").permitAll()
 						.anyRequest().authenticated()
 				)
 				.userDetailsService(memberService)
@@ -64,7 +65,10 @@ public class SecurityConfig {
 				)
 				.logout(logout -> logout
 						.logoutUrl("/logout")
-						.logoutSuccessUrl("/home")
+						.logoutSuccessUrl("/login")
+						.invalidateHttpSession(true)
+						.clearAuthentication(true)
+						.deleteCookies("JSESSIONID")
 				);
 
 		// CSRF는 정상 유지 (login.html에 히든 필드 이미 있음)

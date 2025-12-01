@@ -28,24 +28,24 @@ public class MemberController {
     @GetMapping(value = "/add")
     public String requestAddMemberFort(Model model) {
         model.addAttribute("memberFormDto", new MemberFormDto());
-        return "member/addMember";
+        return "Member/addMember";
     }
 
     //새로운 회원 엔티티 추가
     @PostMapping(value = "/add")
     public String submitAddNewMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
-            return "member/addMember";
+            return "Member/addMember";
         }
         try {
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
         }catch (IllegalStateException e){
             model.addAttribute("errorMessage",e.getMessage());
-            return "member/addMember";
+            return "Member/addMember";
         }
 
-        return "redirect:/members";
+        return "redirect:/";
     }
 
     //회원 수정 폼

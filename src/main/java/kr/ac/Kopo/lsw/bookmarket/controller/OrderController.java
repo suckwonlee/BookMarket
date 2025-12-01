@@ -20,8 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/order")
+@RequestMapping("/order")
 public class OrderController {
+
+    @Autowired
+    private OrderProService orderProService;
+
     @Autowired
     private OrderService orderService;
 
@@ -31,8 +35,6 @@ public class OrderController {
     Order order;
     List<Book> listofBooks;
 
-    @Autowired
-    private OrderProService orderProService;
     @Autowired
     private BookService bookService;
 

@@ -1,9 +1,10 @@
-<html lang="ko">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="ko">
 <head> 
 	<meta charset="UTF-8">
 	<title>도서 상세  정보</title>
 	<link href="/BookMarket/css/bootstrap.min.css" rel="stylesheet" >
-	<script src="D:\SpringbootsProjects\BookMarket\src\main\resources\static\js\controllers.js"></script>
+	<script th:src="@{/js/controllers.js}"></script>
+
 </head>
 <body>
 <div class="container py-4">
@@ -35,14 +36,21 @@
 				<p><b>재고수</b> : <span th:text ="${book.unitsInStock}"></span>
 				<h4 th:text ="${book.unitPrice}+'원'"></h4>
 				<br>
-				<form name="addForm" id="addForm" method="post">
-					<input type="hidden" name="_method" value="put"/>
-					<p>
-					<a th:href="'javascript:addToCart(\''+${book.bookId}+'\')'" class="btn btn-primary">도서주문 &raquo;</a>
+			<form name="addForm" id="addForm" method="post">
+				<!-- ★ CSRF 토큰 추가 -->
+				<input type="hidden"
+					   th:name="${_csrf.parameterName}"
+					   th:value="${_csrf.token}"/>
+
+				<input type="hidden" name="_method" value="put"/>
+				<p>
+					<a th:href="'javascript:addToCart(\''+${book.bookId}+'\')'" class="btn btn-primary">
+						도서주문 &raquo;
+					</a>
 					<a href="/BookMarket/cart" class="btn btn-warning">장바구니 &raquo;</a>
 					<a href="/BookMarket/books" class="btn btn-secondary">도서 목록 &raquo;</a>
-
-				</form>
+				</p>
+			</form>
 
 		</div> 
 

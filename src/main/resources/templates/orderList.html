@@ -22,9 +22,9 @@
 			</form>
 		</div>
 		<div class="col-md-12">
-			<form name="clearForm" method="post">
+			<form name="clearForm" method="post" th:action="@{/order/deleteAll}">
 				<input type="hidden" name="_method" value="delete">
-				<a th:href="@{/order/deleteAll}" class="btn bg-danger">삭제하기</a>
+				<button type="submit" class="btn bg-danger">삭제하기</button>
 			</form>
 		</div>
 		<div style="padding-top: 50px">
