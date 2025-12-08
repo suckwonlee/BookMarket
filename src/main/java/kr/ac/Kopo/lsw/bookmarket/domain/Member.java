@@ -7,17 +7,19 @@ import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
-@Table(name="member")
+@Table(name = "member")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "num")
-    private long num;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long num;
+
     @Column(unique = true)
     private String memberId;
+
     private String password;
     private String name;
     private String phone;
@@ -36,8 +38,6 @@ public class Member {
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
         member.setRole(Role.USER);
-
-
         return member;
     }
 }

@@ -2,76 +2,106 @@ package kr.ac.Kopo.lsw.bookmarket.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
-import kr.ac.Kopo.lsw.bookmarket.service.MemberService;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
-public class SecurityConfig {
-
-	private final JdbcTemplate jdbc;
-
-	public SecurityConfig(JdbcTemplate jdbc) {
-		this.jdbc = jdbc;
-	}
+@EnableWebSecurity
+public class SecurityConfig{
 
 	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
+	protected PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
+/*
 	@Bean
-	SecurityFilterChain filterChain(HttpSecurity http, MemberService memberService) throws Exception {
-		http
-				.authorizeHttpRequests(auth -> auth
-						.requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-						.requestMatchers("/login", "/loginfailed", "/home", "/").permitAll()
-						.requestMatchers("/member/add").permitAll()
-						.anyRequest().authenticated()
-				)
-				.userDetailsService(memberService)
-				.formLogin(form -> form
-						.loginPage("/login")
-						.loginProcessingUrl("/login")      // login.html의 th:action="@{/login}"과 일치
-						.usernameParameter("username")     // login.html의 name="username"
-						.passwordParameter("password")     // login.html의 name="password"
-						.failureUrl("/login?error")
-						.successHandler((req, res, auth) -> {
-							// 로그인 직후 헤더가 요구하는 세션 값 보장 (name 미존재로 인한 500 방지)
-							String memberId = auth.getName();
-							String name = null;
-							try {
-								name = jdbc.queryForObject(
-										"select name from member where member_id=?",
-										String.class, memberId
-								);
-							} catch (Exception ignored) {}
-
-							Map<String, Object> info = new HashMap<>();
-							info.put("memberId", memberId);
-							info.put("name", name); // header.html에서 requireNonNull로 쓰는 경우 대비
-							req.getSession(true).setAttribute("userLoginInfo", info);
-
-							// 컨텍스트패스(/BookMarket) 안전 적용
-							res.sendRedirect(req.getContextPath() + "/home");
-						})
-						.permitAll()
-				)
-				.logout(logout -> logout
-						.logoutUrl("/logout")
-						.logoutSuccessUrl("/login")
-						.invalidateHttpSession(true)
-						.clearAuthentication(true)
-						.deleteCookies("JSESSIONID")
-				);
-
-		// CSRF는 정상 유지 (login.html에 히든 필드 이미 있음)
-		return http.build();
+	protected UserDetailsService users() {
+		UserDetails admin = User.builder()
+			.username("Admin")
+			.password(passwordEncoder().encode("Admin1234"))
+			.roles("ADMIN")
+			.build();
+		return new InMemoryUserDetailsManager(admin);
 	}
+	*/
+    @Bean
+    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {	
+    	
+    	http
+    	.csrf(AbstractHttpConfigurer::disable)
+
+		// 특정 URL에 대한 권한 설정.
+        .authorizeHttpRequests(
+        		authorizeRequests -> authorizeRequests            
+        		.requestMatchers("/books/add").hasRole("ADMIN" )
+				.requestMatchers("/order/list").hasRole("ADMIN" )
+        		.anyRequest().permitAll()
+        )
+        //.formLogin(Customizer.withDefaults());  
+       .formLogin(
+        	formLogin->formLogin    
+		    
+		    .loginPage("/login") // 사용자 정의 로그인 페이지
+		    .loginProcessingUrl("/login")
+		    .defaultSuccessUrl("/books/add")// 관리자 로그인 성공 후 이동 페이지
+			.defaultSuccessUrl("/order/list")// 관리자 로그인 성공 후 이동 페이지
+			.defaultSuccessUrl("/")// 일반 사용자 로그인 성공 후 이동 페이지
+		    .failureUrl("/loginfailed") // 로그인 실패 후 이동 페이지
+ 			.usernameParameter("username")
+ 			.passwordParameter("password")
+ 			
+        )
+        
+    	.logout(
+    			logout -> logout
+    			.logoutUrl("/logout")             		
+		      .logoutSuccessUrl("/login")
+	    );
+		
+        return http.build();
+        
+    }
+
+   
+    
+    
+
+   /* @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+    	return(web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+    }
+    */
+    /*
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+    	 UserDetails user1 = User.withUsername("user1")
+    	            .password(passwordEncoder().encode("user1Pass"))
+    	            .roles("USER")
+    	            .build();
+    	        UserDetails user2 = User.withUsername("user2")
+    	            .password(passwordEncoder().encode("user2Pass"))
+    	            .roles("USER")
+    	            .build();
+    	            
+    	        UserDetails admin = User.withUsername("admin")
+    	            .password(passwordEncoder().encode("adminPass"))
+    	            .roles("ADMIN")
+    	            .build();
+    	       // return new InMemoryUserDetailsManager(user1, user2, admin);
+    	        return new InMemoryUserDetailsManager( admin);
+    }
+    */
+    
+
 }

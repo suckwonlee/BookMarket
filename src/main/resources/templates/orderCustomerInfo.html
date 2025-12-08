@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container py-4">
-	<th:block th:replace="~{/module/header.html}"></th:block>
+	<th:block th:replace="~{/module/header}"></th:block>
 
 	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
  		<div class="container-fluid py-5">
@@ -17,10 +17,6 @@
 
  	<div class="row align-items-md-stretch">
 		<form th:object="${customer}" action="/BookMarket/order/orderCustomerInfo" method="post">
-			<input type="hidden"
-				   th:name="${_csrf.parameterName}"
-				   th:value="${_csrf.token}"/>
-
 			<legend>고객 세부 사항</legend>
 			<div class="mb-3 row">
 				<label class="col-sm-2 control-label">고객 ID</label>
@@ -72,8 +68,7 @@
 			</div>
 		</form>
    </div>
-
-	<th:block th:replace="~{/module/footer.html}"></th:block>
+	<th:block th:replace="~{/module/footer}"></th:block>
 </div>
 </body>
 </html>

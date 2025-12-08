@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container py-4">
-	<th:block th:replace="~{/module/header.html}"></th:block>
+	<th:block th:replace="~{/module/header}"></th:block>
 
 	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
  		<div class="container-fluid py-5">
@@ -22,9 +22,9 @@
 			</form>
 		</div>
 		<div class="col-md-12">
-			<form name="clearForm" method="post" th:action="@{/order/deleteAll}">
+			<form name="clearForm" method="post">
 				<input type="hidden" name="_method" value="delete">
-				<button type="submit" class="btn bg-danger">삭제하기</button>
+				<a th:href="@{/order/deleteAll}" class="btn bg-danger">삭제하기</a>
 			</form>
 		</div>
 		<div style="padding-top: 50px">
@@ -60,7 +60,7 @@
 			<div><i>Sorted by [[${sortField}]] in [[${sortDir}]] order</i></div>
 		</div>
    </div>
-	<th:block th:replace="~{/module/footer.html}"></th:block>
+	<th:block th:replace="~{/module/footer}"></th:block>
 </div>
 </body>
 </html>

@@ -201,8 +201,31 @@ public class BookController {
 		   mav.addObject("url", req.getRequestURL()+"?"+req.getQueryString()); 
 		   mav.setViewName("errorBook");
 		   return mav; 
-	   }   
+	   }
 
-	
-	  
+	@GetMapping("/update")
+	public String getUpdateBookForm(@ModelAttribute("updateBook") Book book, @RequestParam("id") String bookId, Model model) {
+		Book bookById = bookService.getBookById(bookId);
+		model.addAttribute("book", bookById);
+		return "updateForm";
+	}
+
+	@PostMapping("/update")
+	public String processUpdatewBookForm(@ModelAttribute("updateBook") Book book) {
+		MultipartFile bookImage = book.getBookImage();
+
+		//String rootDirectory = fileDir;
+		if (bookImage!=null && !bookImage.isEmpty()) {
+			try {
+				String fname = bookImage.getOriginalFilename();
+				bookImage.transferTo(new File(fileDir + fname));
+				book.setFileName(fname);
+			} catch (Exception e) {
+				throw new RuntimeException("Book Image saving failed", e);
+			}
+		}
+		bookService.setUpdateBook(book);
+		return "redirect:/books";
+	}
+
 }

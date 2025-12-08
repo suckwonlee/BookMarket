@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container py-4">
-	<th:block th:replace="~{/module/header.html}"></th:block>
+	<th:block th:replace="~{/module/header}"></th:block>
 
 	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
  		<div class="container-fluid py-5">
@@ -17,9 +17,6 @@
 	<div class="row align-items-md-stretch">
 		<div class="container col-md-10 py-5" style="background: #fafafe">
 			<form th:object="${order}" action="/BookMarket/order/save" method="post">
-				<input type="hidden"
-					   th:name="${_csrf.parameterName}"
-					   th:value="${_csrf.token}"/>
 				<input type="hidden" name="orderId" th:field="*{orderId}"/>
 				<input type="hidden" name="shipping.id" th:field="*{shipping.id}"/>
 
@@ -115,7 +112,7 @@
 		</div>
 	</div>
 
-	<th:block th:replace="~{/module/footer.html}"></th:block>
+	<th:block th:replace="~{/module/footer}"></th:block>
 </div>
 </body>
 </html>

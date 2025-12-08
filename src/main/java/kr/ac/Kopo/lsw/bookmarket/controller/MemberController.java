@@ -1,10 +1,9 @@
 package kr.ac.Kopo.lsw.bookmarket.controller;
 
-import jakarta.validation.Valid;
 import kr.ac.Kopo.lsw.bookmarket.domain.Member;
 import kr.ac.Kopo.lsw.bookmarket.domain.MemberFormDto;
-import kr.ac.Kopo.lsw.bookmarket.repository.MemberRepository;
 import kr.ac.Kopo.lsw.bookmarket.service.MemberService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,65 +15,71 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "/member")
+@RequestMapping(value = "/members")
 public class MemberController {
     @Autowired
     MemberService memberService;
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    //회원가입 폼 출력
-
+//    회원가입 폼 출력
     @GetMapping(value = "/add")
-    public String requestAddMemberFort(Model model) {
+    public String requestAddMemberForm(Model model) {
         model.addAttribute("memberFormDto", new MemberFormDto());
-        return "Member/addMember";
+        return "member/addMember";
     }
 
-    //새로운 회원 엔티티 추가
+//    새로운 회원 Entity 추가
     @PostMapping(value = "/add")
     public String submitAddNewMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
-            return "Member/addMember";
+            return "member/addMember";
         }
-        try {
+
+        try{
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
         }catch (IllegalStateException e){
-            model.addAttribute("errorMessage",e.getMessage());
-            return "Member/addMember";
+            model.addAttribute("errorMessage", e.getMessage());
+            return "member/addMember";
         }
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 
-    //회원 수정 폼
+//    회원 수정 폼
     @GetMapping(value = "/update/{memberId}")
-    public String requestUpdateMemberForm(@PathVariable("memberId") String memberId, Model model) {
-        Member member=memberService.getMemberByMemberId(memberId);
-        model.addAttribute("memberFormDto",member);
+    public String requestUpdateMemberForm(@PathVariable(name = "memberId") String memberId, Model model) {
+        Member member = memberService.getMemberByMemberId(memberId);
+        model.addAttribute("memberFormDto", member);
         return "member/updateMember";
     }
-    //회원 수정 기능 수행
+
+//    회원 수정 기능 수행
     @PostMapping(value = "/update")
     public String submitUpdateMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             return "member/updateMember";
         }
-        try {
+
+        try{
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
         }catch (IllegalStateException e){
-            model.addAttribute("errorMessage",e.getMessage());
-            return "member/updateMember";
+            model.addAttribute("errorMessage", e.getMessage());
+            return "member/upadteMember";
         }
+
         return "redirect:/members";
     }
 
-    //회원삭제
+//    회원 삭제
     @GetMapping(value = "/delete/{memberId}")
-    public String deleteMember(@PathVariable("memberId") String memberId) {
+    public String deleteMember(@PathVariable(name = "memberId") String memberId) {
         memberService.deleteMember(memberId);
+
         return "redirect:/logout";
     }
+
 }
